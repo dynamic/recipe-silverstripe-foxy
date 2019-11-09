@@ -25,7 +25,8 @@
         "dynamic/silverstripe-foxy-inventory": "^1.0",
         "dynamic/silverstripe-foxy-orders": "^1.0",
         "dynamic/silverstripe-foxy-products": "^1.0",
-        "dynamic/silverstripe-foxy-single-sign-on": "^1.0"
+        "dynamic/silverstripe-foxy-single-sign-on": "^1.0",
+        "littlegiant/silverstripe-catalogmanager": "^5.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",

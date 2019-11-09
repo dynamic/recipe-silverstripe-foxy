@@ -50,7 +50,7 @@ Dynamic\Foxy\Form\QuantityField:
 
 Dynamic\Foxy\Discounts\Model\Discount:
   extensions:
-    - Dynavap\Extension\DiscountDataExtension
+    - Dynamic\FoxyRecipe\Extension\DiscountDataExtension
 
 Dynamic\Foxy\Model\FoxyHelper:
   max_quantity: 10
