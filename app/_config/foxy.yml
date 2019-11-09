@@ -1,0 +1,59 @@
+---
+name: foxy-app-config
+After: "*"
+---
+PageController:
+  extensions:
+    - Dynamic\Foxy\Extension\PurchasableExtension
+
+Dynamic\Products\Page\Product:
+  extensions:
+    - Dynamic\Foxy\Extension\Purchasable
+    - Dynamic\Foxy\Discounts\Extension\ProductDataExtension
+    - Dynamic\Foxy\Inventory\Extension\ProductInventoryManager
+    - Dynamic\Foxy\Inventory\Extension\ProductExpirationManager
+
+Dynamic\Products\Page\ProductController:
+  extensions:
+    - Dynamic\Foxy\Inventory\Extension\ProductControllerExtension
+    - Dynamic\Foxy\Discounts\Extension\PageControllerExtension
+
+Dynamic\Foxy\Products\Page\ShippableProduct:
+  extensions:
+    - Dynamic\Foxy\Extension\Shippable
+    - LittleGiant\CatalogManager\Extensions\CatalogPageExtension
+
+Dynamic\Foxy\Model\ProductOption:
+  extensions:
+    - Dynamic\Foxy\Products\Extension\ProductOptionDataExtension
+
+SilverStripe\Security\Member:
+  extensions:
+    - Dynamic\Foxy\Orders\Extension\MemberDataExtension
+
+Dynamic\Foxy\Model\Setting:
+  extensions:
+    - Dynamic\Foxy\Integrations\Extension\FoxyIntegrationsSetting
+    - Dynamic\Foxy\Discounts\Extension\FoxyAdminExtension
+
+Dynamic\Foxy\Parser\Controller\FoxyController:
+  extensions:
+    - Dynamic\Foxy\Integrations\Extension\FoxyIntegrationsExtension
+
+Dynamic\Foxy\Form\AddToCartForm:
+  extensions:
+    - Dynamic\Foxy\Inventory\Extension\AddToCartFormExtension
+
+Dynamic\Foxy\Form\QuantityField:
+  extensions:
+    - Dynamic\Foxy\Inventory\Extension\QuantityFieldExtension
+
+Dynamic\Foxy\Discounts\Model\Discount:
+  extensions:
+    - Dynavap\Extension\DiscountDataExtension
+
+Dynamic\Foxy\Model\FoxyHelper:
+  max_quantity: 10
+  product_classes:
+    - Dynamic\Products\Page\Product
+  include_product_subclasses: 1
