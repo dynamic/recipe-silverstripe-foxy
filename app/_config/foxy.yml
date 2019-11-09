@@ -34,7 +34,6 @@ SilverStripe\Security\Member:
 Dynamic\Foxy\Model\Setting:
   extensions:
     - Dynamic\Foxy\Integrations\Extension\FoxyIntegrationsSetting
-    - Dynamic\Foxy\Discounts\Extension\FoxyAdminExtension
 
 Dynamic\Foxy\Parser\Controller\FoxyController:
   extensions:
