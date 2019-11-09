@@ -15,8 +15,9 @@ use Symbiote\GridFieldExtensions\GridFieldAddExistingSearchButton;
 /**
  * Class \Dynavap\Extension\DiscountDataExtension
  *
- * @property Discount|DiscountDataExtension $owner
+ * @property Discount|\Dynavap\Extension\DiscountDataExtension $owner
  * @method ManyManyList|Product[] Products()
+ * @method ManyManyList|Product[] ExcludeProducts()
  */
 class DiscountDataExtension extends DataExtension
 {
@@ -25,6 +26,7 @@ class DiscountDataExtension extends DataExtension
      */
     private static $many_many = [
         'Products' => Product::class,
+        'ExcludeProducts' => Product::class,
     ];
 
     /**
@@ -35,8 +37,26 @@ class DiscountDataExtension extends DataExtension
         if ($this->owner->ID) {
             // Products
             $field = $fields->dataFieldByName('Products');
+            $fields->removeByName('Products');
+            $fields->addFieldToTab('Root.Included', $field);
+            $field->setDescription('Limit the discount to these products. If no products specified, all products will receive the discount');
             $config = $field->getConfig();
             $config
+                ->removeComponentsByType([
+                    GridFieldAddExistingAutocompleter::class,
+                    GridFieldAddNewButton::class,
+                    GridFieldArchiveAction::class,
+                ])
+                ->addComponents([
+                    new GridFieldAddExistingSearchButton(),
+                ]);
+
+            $exclusions = $fields->dataFieldByName('ExcludeProducts');
+            $fields->removeByName('ExcludeProducts');
+            $fields->addFieldToTab('Root.Excluded', $exclusions);
+            $exclusions->setDescription('Products in this list will ALWAYS be excluded from the discount, even if added to the "Included" tab.');
+            $excludeConfig = $exclusions->getConfig();
+            $excludeConfig
                 ->removeComponentsByType([
                     GridFieldAddExistingAutocompleter::class,
                     GridFieldAddNewButton::class,
@@ -53,6 +73,19 @@ class DiscountDataExtension extends DataExtension
      */
     public function getRestrictions()
     {
-        return $this->owner->Products()->column('ID');
+        if ($this->owner->Products()->count() == 0) {
+            $products = Product::get()->column();
+        } else {
+            $products = $this->Products()->column();
+        }
+
+        foreach ($this->owner->ExcludeProducts()->column() as $id) {
+            if (in_array($id, $products)) {
+                $key = array_search($id, $products);
+                unset($products[$key]);
+            }
+        }
+
+        return $products;
     }
 }
