@@ -37,7 +37,12 @@
         "pdepend/pdepend": "^2.5",
         "theseer/phpdox": "^0.11.0"
     },
-
+    "autoload": {
+        "psr-4": {
+            "Dynamic\\FoxyRecipe\\": "src/",
+            "Dynamic\\FoxyRecipe\\Test\\": "tests/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.x-dev"

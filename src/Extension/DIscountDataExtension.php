@@ -39,7 +39,8 @@ class DiscountDataExtension extends DataExtension
             $field = $fields->dataFieldByName('Products');
             $fields->removeByName('Products');
             $fields->addFieldToTab('Root.Included', $field);
-            $field->setDescription('Limit the discount to these products. If no products specified, all products will receive the discount');
+            $field->setDescription('Limit the discount to these products. If no products specified, all 
+                products will receive the discount');
             $config = $field->getConfig();
             $config
                 ->removeComponentsByType([
@@ -54,7 +55,8 @@ class DiscountDataExtension extends DataExtension
             $exclusions = $fields->dataFieldByName('ExcludeProducts');
             $fields->removeByName('ExcludeProducts');
             $fields->addFieldToTab('Root.Excluded', $exclusions);
-            $exclusions->setDescription('Products in this list will ALWAYS be excluded from the discount, even if added to the "Included" tab.');
+            $exclusions->setDescription('Products in this list will ALWAYS be excluded from the discount, 
+                even if added to the "Included" tab.');
             $excludeConfig = $exclusions->getConfig();
             $excludeConfig
                 ->removeComponentsByType([
