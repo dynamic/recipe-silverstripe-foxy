@@ -6,8 +6,13 @@ PageController:
   extensions:
     - Dynamic\Foxy\Extension\PurchasableExtension
 
+Dynamic\Products\Page\ProductCategory:
+  extensions:
+    - Dynamic\Products\Extension\RelatedProductsDataExtension
+
 Dynamic\Products\Page\Product:
   extensions:
+    - Dynamic\Products\Extension\RelatedProductsDataExtension
     - Dynamic\Foxy\Extension\Purchasable
     - Dynamic\Foxy\Discounts\Extension\ProductDataExtension
     - Dynamic\Foxy\Inventory\Extension\ProductInventoryManager
@@ -30,6 +35,8 @@ Dynamic\Foxy\Model\ProductOption:
 SilverStripe\Security\Member:
   extensions:
     - Dynamic\Foxy\Orders\Extension\MemberDataExtension
+    - Dynamic\Foxy\SingleSignOn\Extension\CustomerExtension
+  password_logging_enabled: false
 
 Dynamic\Foxy\Model\Setting:
   extensions:
@@ -56,3 +63,41 @@ Dynamic\Foxy\Model\FoxyHelper:
   product_classes:
     - Dynamic\Products\Page\Product
   include_product_subclasses: 1
+
+SilverStripe\security\Security:
+  password_encryption_algorithm: 'sha1_v2.4'
+
+Dynamic\Foxy\SingleSignOn\Client\CustomerClient:
+  foxy_sso_enabled: true
+
+---
+Except:
+  environment: 'live'
+---
+Dynamic\Foxy\Model\FoxyHelper:
+  cart_url: ''
+  secret: ''
+  custom_ssl: 0
+
+Dynamic\Foxy\API\Client\APIClient:
+  enable_api: false
+  client_id: ''
+  client_secret: ''
+  access_token: ''
+  refresh_token: ''
+
+---
+Only:
+  environment: 'live'
+---
+Dynamic\Foxy\Model\FoxyHelper:
+  cart_url: ''
+  secret: ''
+  custom_ssl: 0
+
+Dynamic\Foxy\API\Client\APIClient:
+  enable_api: false
+  client_id: ''
+  client_secret: ''
+  access_token: ''
+  refresh_token: ''
