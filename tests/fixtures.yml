@@ -1,0 +1,3 @@
+Dynamic\Foxy\Discounts\Model\Discount:
+  one:
+    Title: 'Discount One'
