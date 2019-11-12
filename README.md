@@ -9,27 +9,11 @@ Full install of the silverstripe-foxy ecommerce platform.
 ## Installation
 
 ```
-composer require silverstripe-module/skeleton 4.x-dev
+composer require dynamic/recipe-silverstripe-foxy
 ```
 ## License
 
 See [License](license.md)
-
-## Example configuration (optional)
-If your module makes use of the config API in SilverStripe it's a good idea to provide an example config
- here that will get the module working out of the box and expose the user to the possible configuration options.
-
-Provide a yaml code example where possible.
-
-```yaml
-
-Page:
-  config_option: true
-  another_config:
-    - item1
-    - item2
-  
-```
 
 ## Maintainers
  *  [Dynamic](http://www.dynamicagency.com) (<dev@dynamicagency.com>)
