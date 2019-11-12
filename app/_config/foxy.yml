@@ -27,6 +27,9 @@ Dynamic\Foxy\Products\Page\ShippableProduct:
   extensions:
     - Dynamic\Foxy\Extension\Shippable
     - LittleGiant\CatalogManager\Extensions\CatalogPageExtension
+  parent_classes:
+    - Dynamic\Products\Page\ProductCategory
+  sort_column: false
 
 Dynamic\Foxy\Model\ProductOption:
   extensions:
